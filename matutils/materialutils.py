@@ -45,6 +45,27 @@ def setNodeColor(obj,color,nodename=None):
 	
 	diffusenode.inputs[0].default_value = color
 
+def setMixFraction(mat,frac,nodename=None):
+    if nodename is None:
+        nodename = 'Mix Shader'
+    
+    mix = mat.node_tree.nodes.get(nodename)
+    mix.inputs['Fac'].default_value = frac
+    
+def getProperty(mat,nodename,inputname):
+    matnode = mat.node_tree.nodes.get(nodename)
+    iput = matnode.inputs.get(inputname)
+    
+    return iput.default_value
+
+def setProperty(mat,nodename,inputname,value):
+    matnode = mat.node_tree.nodes.get(nodename)
+    iput = matnode.inputs.get(inputname)
+    
+    iput.default_value = value
+
+
+    
 
 def createStandardMaterial(drgb,grough=0.2,factor=0.2,name='Standard Material',grgb=(1,1,1,1),drough=0):
 	"""
